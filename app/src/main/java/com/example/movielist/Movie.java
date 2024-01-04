@@ -33,6 +33,16 @@ public class Movie {
         return null;
     }
 
+    public static ArrayList<Movie> nonDeletedMovie(){
+        ArrayList<Movie> notDeleted = new ArrayList<Movie>();
+        for(Movie m : movieArrayList){
+            if(m.getDeleted() == null){
+                notDeleted.add(m);
+            }
+        }
+        return notDeleted;
+    }
+
     public int getId() {
         return id;
     }

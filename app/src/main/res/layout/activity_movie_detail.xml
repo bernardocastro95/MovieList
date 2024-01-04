@@ -73,5 +73,17 @@
         android:textColor="@color/darkGrey"
         android:minLines="3"
         android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:textSize="25sp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:onClick="deleteMovie"/>
 
 </LinearLayout>

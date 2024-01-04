@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.Date;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
     private EditText titleEditText, descEditText;
+    private Button button;
     private Movie selectedMovie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     private void initWidgets() {
         titleEditText = findViewById(R.id.titleEditText);
         descEditText = findViewById(R.id.descriptionEditText);
+        button = findViewById(R.id.delete);
     }
 
     public void saveMovie(View view) {
@@ -53,5 +58,16 @@ public class MovieDetailActivity extends AppCompatActivity {
             titleEditText.setText(selectedMovie.getTitle());
             descEditText.setText(selectedMovie.getDescription());
         }
+        else {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void deleteMovie(View view) {
+        selectedMovie.setDeleted(new Date());
+        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
+        sqLiteManager.updateMovieInDatabase(selectedMovie);
+        finish();
+
     }
 }

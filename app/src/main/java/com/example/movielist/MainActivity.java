@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         movieListView = findViewById(R.id.movieListView);
     }
     private void setMovieAdapter(){
-        MovieAdapter movieAdapter = new MovieAdapter(getApplicationContext(), Movie.movieArrayList);
+        MovieAdapter movieAdapter = new MovieAdapter(getApplicationContext(), Movie.nonDeletedMovie());
         movieListView.setAdapter(movieAdapter);
     }
 
@@ -51,5 +51,11 @@ public class MainActivity extends AppCompatActivity {
     public void newMovie(View view) {
         Intent newMovieIntent = new Intent(this, MovieDetailActivity.class);
         startActivity(newMovieIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setMovieAdapter();
     }
 }
