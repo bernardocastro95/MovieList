@@ -21,13 +21,15 @@ public class MovieDetailActivity extends AppCompatActivity {
         descEditText = findViewById(R.id.descriptionEditText);
     }
 
-    public void saveNote(View view) {
+    public void saveMovie(View view) {
+        //SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
         String title = String.valueOf(titleEditText.getText());
         String description = String.valueOf(descEditText.getText());
 
         int id = Movie.movieArrayList.size();
         Movie newMovie = new Movie(id, title, description);
         Movie.movieArrayList.add(newMovie);
+        //sqLiteManager.addMovieToDatabase(newMovie);
         finish();
     }
 }

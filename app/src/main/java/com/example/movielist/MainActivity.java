@@ -15,6 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWidget();
+        //loadFromDBToMemory();
+        setMovieAdapter();
+
+    }
+
+    private void loadFromDBToMemory() {
+        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
+        sqLiteManager.populateMovieListArray();
+
     }
 
     private void initWidget() {
