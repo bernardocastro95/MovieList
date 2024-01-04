@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         initWidget();
         loadFromDBToMemory();
         setMovieAdapter();
+        setOnClickListener();
 
     }
 
@@ -32,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
     private void setMovieAdapter(){
         MovieAdapter movieAdapter = new MovieAdapter(getApplicationContext(), Movie.movieArrayList);
         movieListView.setAdapter(movieAdapter);
+    }
+
+    private void setOnClickListener(){
+        movieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie selectedMovie = (Movie) movieListView.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), MovieDetailActivity.class);
+                intent.putExtra(Movie.MOVIE_EDIT_EXTRA, selectedMovie.getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public void newMovie(View view) {

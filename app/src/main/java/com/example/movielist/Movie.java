@@ -5,6 +5,7 @@ import java.util.Date;
 public class Movie {
 
     public static ArrayList<Movie> movieArrayList = new ArrayList<>();
+    public static String MOVIE_EDIT_EXTRA = "movieEdit";
     private int id;
     private String title;
     private String description;
@@ -21,6 +22,15 @@ public class Movie {
         this.title = title;
         this.description = description;
         deleted = null;
+    }
+
+    public static Movie getMovieForID(int passMovieID) {
+        for(Movie m : movieArrayList){
+            if(m.getId() == passMovieID){
+                return m;
+            }
+        }
+        return null;
     }
 
     public int getId() {
